@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=42", "wheel", "Cython", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "DFA3D_V2"
+version = "0.1"
+description = "A package for 3D face alignment using deep learning"
+authors = [{name = "Jianzhu Guo"}]
+urls = { "Homepage" = "https://github.com/cleardusk/3DDFA" }
+license = { text = "MIT License" }
+readme = "README.md"
+dependencies = [
+    "torch>=1.0",
+    "torchvision>=0.2",
+    "opencv-python>=4.1",
+    "onnxruntime>=1.16",
+    "numpy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "pytest",
+]
+
+[tool.setuptools]
+packages = { find = { exclude = ["docs"] } }
+
+[tool.setuptools.package-data]
+"*" = ["weights/*", "configs/*"]
+
+[tool.cython]
+language_level = 3
+
+[tool.cythonize]
+module = [
+    { name = "DFA3D_V2/FaceBoxes/utils/nms/cpu_nms", file = "DFA3D_V2/FaceBoxes/utils/nms/cpu_nms.pyx" }
+]
+
