@@ -10,7 +10,13 @@ setup(
     url="https://github.com/cleardusk/3DDFA",
     packages=find_packages(exclude=["docs"]),
     license="MIT License",
-    install_requires=["torch>=1.0", "torchvision>=0.2", "opencv-python>=4.1"],
+    install_requires=[
+        "torch>=1.0",
+        "torchvision>=0.2",
+        "opencv-python>=4.1",
+        "onnxruntime>=1.16",
+        "numpy",
+    ],
     ext_modules=cythonize("DFA3D_V2/FaceBoxes/utils/nms/cpu_nms.pyx"),
     include_dirs=[numpy.get_include()],
     extras_require={
